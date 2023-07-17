@@ -1,0 +1,24 @@
+version: '3.9'
+
+volumes:
+  STORE_VOLUME:
+
+services:
+  tkrzw:
+    build:
+      context: ./docker/tkrzw
+    init: true
+    ports:
+      - 1978:1978
+    volumes:
+      - type: volume
+        source: STORE_VOLUME
+        target: /var/db
+    command:
+      - tkrzw_server
+      - --async
+      - --threads
+      - "4"
+      - --log_level
+      - debug
+      - /var/db/casket.tkh#num_buckets=10M
