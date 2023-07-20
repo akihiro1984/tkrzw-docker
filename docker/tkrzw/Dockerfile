@@ -21,7 +21,8 @@ grpc-dev protobuf-dev
 RUN set -eux && \
 cd /tmp && tar xvf ${TKRZW_PACKAGE_NAME}.tar.gz && \
 cd ${TKRZW_PACKAGE_NAME} && \
-./configure --enable-opt-native --enable-most-features && make && make check-light && make install
+./configure --enable-opt-native --enable-most-features && \
+make && make check-light && make install
 
 RUN set -eux && \
 cd /tmp && tar xvf ${TKRZW_RPC_PACKAGE_NAME}.tar.gz && \
@@ -34,5 +35,9 @@ make && make install
 RUN set -eux && \
 apk del .build-dependencies && \
 rm -rf cd /tmp/*
+
+## workaround ...
+RUN set -eux && \
+apk add --update --no-cache grpc-dev protobuf-dev
 
 CMD [ "tkrzw_server" ]

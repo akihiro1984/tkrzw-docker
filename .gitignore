@@ -1,0 +1,5 @@
+/docker/**/tkrzw*.tar.gz
+tkrzw_rpc.proto
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml

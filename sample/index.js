@@ -34,9 +34,14 @@ protobuf.load("tkrzw_rpc.proto", function(err, root) {
         try {
             let key = Buffer.from('index');
             let value = Buffer.from('Hello! TKRZW!');
+
+            console.info("SET >> ", key, value);
+
             await dbm.set({ key, value })
 
             let result = await dbm.get({ key })
+
+            console.info("GET >> ", result);
 
             console.assert(Buffer.compare(value, result.value) === 0);
         }

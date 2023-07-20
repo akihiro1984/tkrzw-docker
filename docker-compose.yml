@@ -2,6 +2,7 @@ version: '3.9'
 
 volumes:
   STORE_VOLUME:
+  SAMPLE_NODE_MODULES:
 
 services:
   tkrzw:
@@ -22,3 +23,21 @@ services:
       - --log_level
       - debug
       - /var/db/casket.tkh#num_buckets=10M
+
+  node:
+    build:
+      context: ./docker/node
+    init: true
+    working_dir: /sample
+    environment:
+      - TKRZW_HOST=dns:///tkrzw:1978
+    volumes:
+      - type: bind
+        source: ./sample
+        target: /sample
+    profiles:
+      - poc
+    command:
+      - node
+      - index.js
+
