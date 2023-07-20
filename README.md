@@ -13,6 +13,8 @@ docker compose up -d
 
 ## Sample
 
+### tkrzw_rpc.proto
+
 node.js で使う必要があったので PoC を作成。
 サンプルスクリプトを動作させるには、`tkrzw_rpc.proto` が必要。
 
@@ -23,7 +25,11 @@ node.js で使う必要があったので PoC を作成。
 docker compose cp -L tkrzw:/usr/local/share/tkrzw/tkrzw_rpc.proto ./sample
 ```
 
-`.env` ファイルを適切に修正して動作確認を行う。
+### 動作確認
+
+```
+docker compose --profile poc up node
+```
 
 ## Notice
 
