@@ -34,7 +34,7 @@ make && make install
 
 RUN set -eux && \
 apk del .build-dependencies && \
-rm -rf cd /tmp/*
+rm -rf /tmp/*
 
 ## workaround ...
 RUN set -eux && \
